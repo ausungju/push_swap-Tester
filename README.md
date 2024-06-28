@@ -4,4 +4,4 @@
 
 해당 파일 test.py를 push_swap directory 안에 넣어 주세요.
 
-python3 test.py로 테스트를 시작하세요
+./tester or python3 tester로 테스트를 시작하세요
