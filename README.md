@@ -4,7 +4,7 @@
 
 해당 파일 tester를 push_swap directory 안에 넣어 주세요.
 
-./tester or python3 tester로 테스트를 시작하세요
+./tester or python3 tester로 테스트를 시작하세요<br>
 만약 ./tester로 실행할수 없다면 리눅스환경이 아니거나 권한을 확인해주세요
 
 
