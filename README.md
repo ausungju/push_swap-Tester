@@ -7,4 +7,4 @@
 ./tester or python3 tester로 테스트를 시작하세요
 
 
-![Uploading tester_img.png…]()
+Uploading tester_img.png…
