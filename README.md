@@ -7,4 +7,4 @@
 ./tester or python3 tester로 테스트를 시작하세요
 
 
-Uploading tester_img.png…
+![tester_img](https://github.com/ausungju/push_swap-Tester/assets/58778326/1e59956f-7617-4711-863a-dbc59462c061)
