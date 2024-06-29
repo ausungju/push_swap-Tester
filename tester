@@ -34,8 +34,8 @@ def check_leck(num_list) :
 	lines = r.stderr.split('\n')
 	search_free = [line for line in lines if "total heap usage:" in line][0]
 	search_error = [line for line in lines if "ERROR SUMMARY:" in line][0]
-	if (search_free[search_free.find("allocs") - 2] == search_free[search_free.find("frees") - 2] and 
-	 int(search_error[search_error.find("errors") - 2]) == 0):
+	if (search_free.split("total heap usage: ")[1].split(" allocs")[0] == search_free.split("allocs, ")[1].split(" frees")[0] and 
+	 search_error.split("ERROR SUMMARY: ")[1].split(" errors")[0] == "0"):
 		return ("\033[32m" + "\tleak_OK" + "\033[0m")
 	else :
 		return ("\033[31m" + "\tleak_KO" + "\033[0m")
