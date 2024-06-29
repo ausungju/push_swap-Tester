@@ -7,6 +7,5 @@
 ./tester or python3 tester로 테스트를 시작하세요<br>
 만약 ./tester로 실행할 수 없다면 권한을 확인해주세요
 
-[tester](https://raw.githubusercontent.com/ausungju/push_swap-Tester/master/tester) 
 ![sorted](https://github.com/ausungju/push_swap-Tester/assets/58778326/bbf60a94-c77d-4142-b98b-c4c6369f489f)
 ![not_sorted](https://github.com/ausungju/push_swap-Tester/assets/58778326/ad7ca3ec-ea11-4703-936b-a5591f5cbc15)
