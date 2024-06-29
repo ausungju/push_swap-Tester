@@ -8,4 +8,5 @@
 만약 ./tester로 실행할 수 없다면 권한을 확인해주세요
 
 
-![tester_img](https://github.com/ausungju/push_swap-Tester/assets/58778326/8f5d8538-7e9b-4c00-93c8-2e9ff2d18127)
+![not_sorted](https://github.com/ausungju/push_swap-Tester/assets/58778326/cda7aa00-9ec2-4c4a-846e-1d0123c21794)
+![now](https://github.com/ausungju/push_swap-Tester/assets/58778326/1b07d794-918b-4043-844d-afcd6a66e96b)
