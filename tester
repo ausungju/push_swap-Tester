@@ -4,28 +4,6 @@ import subprocess as sp
 import numpy as np
 import os
 
-# def check_num_range(big_num, samll_num, limit_cmd) :
-# 	r = []
-# 	num_list = np.array(range(big_num, samll_num - 1, -1))
-# 	r.append(sp.run(args=["./push_swap", ' '.join(map(str, num_list))], capture_output=True, text=True).stdout.count('\n'))
-# 	for i in range(9) :
-# 		r.append(sp.run(args=["./push_swap", ' '.join(map(str, np.random.permutation(num_list)))], 
-# 					capture_output=True, text=True).stdout.count('\n'))
-
-# 	print("\t./push_swap <5 random values>")
-# 	print('\t\t', end="")
-# 	for i in range(len(r)) :
-# 		if i % 5 == 0 and i != 0:
-# 			print("\n\t\t", end="")
-# 		if r[i] < limit_cmd :
-# 			print(f"{i+1}." + "\033[32m" + "OK" + "\033[0m", end="  ")
-# 		else :
-# 			print(f"{i+1}." + "\033[31m" + f"KO: {r[i]}" + "\033[0m", end="  ")
-# 		if (i + 1 == len(r)) :
-# 			print(check_leck(' '.join(map(str, num_list))))
-# 	print("\n")
-
-
 def check_num_range(big_num, samll_num, limit_cmd) :
 	num_list = []
 	num_set = np.array(range(big_num, samll_num - 1, -1))
