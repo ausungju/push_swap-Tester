@@ -55,16 +55,33 @@ print("/*                                                                       
 print("/* ******************************************************************************* */")
 print("\n")
 
-sp.run(args=["make", "re"], capture_output=True, text=True)
+out = sp.run(args=["make", "re"], capture_output=True, text=True)
+if (out.stderr != "") :
+	print(out.stderr)
+	print("\033[31m" + "\t MAKE FAIL\n" + "\033[0m")
+	exit()
+
 files = os.listdir("./")
-if ("push_swap" not in files) :
-	print("not found \"push_swap\"\n")
+if ("push_swap" not in files or "checker_linux" not in files) :
+	if ("push_swap" not in files) :
+		print("not found \"push_swap\"\n")
+	if ("checker_linux" not in files) :
+		print("not found \"checker_linux\"\n")
 	exit()
 
 print("\033[1m1.Error management\033[0m")
 r = sp.run(args=["./push_swap", "a 1"], capture_output=True, text=True)
 check_leck("a 1")
 print("\t./push_swap <Non-numeric arguments>", end="")
+if r.stderr == "Error\n" or r.stdout == "Error\n":
+	print("\033[32m" + "\tOK" + "\033[0m", end="")
+else :
+	print("\033[31m" + "\tKO" + "\033[0m", end="")
+print(check_leck("a 1"))
+
+r = sp.run(args=["./push_swap", "a", "1"], capture_output=True, text=True)
+check_leck("a 1")
+print("\t\t\t", end="")
 if r.stderr == "Error\n" or r.stdout == "Error\n":
 	print("\033[32m" + "\tOK" + "\033[0m", end="")
 else :
