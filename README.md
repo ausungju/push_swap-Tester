@@ -1,6 +1,9 @@
 # push_swap-Tester
 ## 설명
 해당 테스터기는 Mandatory part만 체크를 해줍니다.
+#### 종속성
+- python3
+- numpy
 ## 설치
 [tester](https://github.com/ausungju/push_swap-Tester/blob/master/tester)와 subject page에서 제공하는 checker_linux를 <br>push_swap directory 안에 넣어 주세요.
 ## 사용법
