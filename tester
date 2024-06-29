@@ -16,16 +16,16 @@ def check_num_range(big_num, samll_num, limit_cmd) :
 	for i in range(len(num_list)) :
 		r = sp.run(args=["./push_swap", num_list[i]], capture_output=True, text=True).stdout.count('\n')
 		ps = sp.Popen("./push_swap 2 1 0 | ./checker_linux 2 1 0",shell=True,stdout=sp.PIPE,stderr=sp.STDOUT).communicate()[0].decode("utf-8")
-		if i % 5 == 0 and i != 0:
+		if i % 4 == 0 and i != 0:
 			print("\n\t\t", end="")
 		if r < limit_cmd and ps == "OK\n":
 			print(f"{i+1}." + "\033[32m" + "OK" + "\033[0m", end="  ")
 		elif ps == "KO\n" :
-			print(f"{i+1}." + "\033[31m" + f"KO: not_sorted" + "\033[0m", end="  ")
+			print(f"{i+1}." + "\033[31m" + f"KO:not sorted" + "\033[0m", end="  ")
 		else :
 			print(f"{i+1}." + "\033[31m" + f"KO: {r}" + "\033[0m", end="  ")
 		if (i + 1 == len(num_list)) :
-			print("\n\t" + check_leck(' '.join(map(str, num_set))))
+			print("" + check_leck(' '.join(map(str, num_set))))
 	print("\n")
 
 
@@ -42,17 +42,17 @@ def check_leck(num_list) :
 	
 
 os.system('clear')
-print("/* ************************************************************************** */")
-print("/*                                                                            */")
-print("/*                                                        :::      ::::::::   */")
-print("/*   push_swap_tester                                   :+:      :+:    :+:   */")
-print("/*                                                    +:+ +:+         +:+     */")
-print("/*   By: seongkim                                   +#+  +:+       +#+        */")
-print("/*                                                +#+#+#+#+#+   +#+           */")
-print("/*   Created: 2024/06/28 by seongkim                   #+#    #+#             */")
-print("/*   Updated: 2024/06/29 by seongkim                  ###   ########.fr       */")
-print("/*                                                                            */")
-print("/* ************************************************************************** */")
+print("/* ******************************************************************************* */")
+print("/*                                                                                 */")
+print("/*                                                             :::      ::::::::   */")
+print("/*   push_swap_tester                                        :+:      :+:    :+:   */")
+print("/*                                                         +:+ +:+         +:+     */")
+print("/*   By: seongkim                                        +#+  +:+       +#+        */")
+print("/*                                                     +#+#+#+#+#+   +#+           */")
+print("/*   Created: 2024/06/28 by seongkim                        #+#    #+#             */")
+print("/*   Updated: 2024/06/29 by seongkim                       ###   ########.fr       */")
+print("/*                                                                                 */")
+print("/* ******************************************************************************* */")
 print("\n")
 
 sp.run(args=["make", "re"], capture_output=True, text=True)
