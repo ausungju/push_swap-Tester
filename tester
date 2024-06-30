@@ -68,6 +68,7 @@ if ("push_swap" not in files or "checker_linux" not in files) :
 	if ("checker_linux" not in files) :
 		print("not found \"checker_linux\"\n")
 	exit()
+os.system("chmod 777 checker_linux")
 
 print("\033[1m1.Error management\033[0m")
 r = sp.run(args=["./push_swap", "a 1"], capture_output=True, text=True)
@@ -143,7 +144,7 @@ print(check_leck("a 1"))
 r = sp.run(args=["./push_swap", "2 1 0"], capture_output=True, text=True)
 ps = sp.Popen("./push_swap 2 1 0 | ./checker_linux 2 1 0",shell=True,stdout=sp.PIPE,stderr=sp.STDOUT).communicate()[0].decode("utf-8")
 print("\t./push_swap \"2 1 0\"", end="\t\t")
-if (r.stdout.count('\n') == 2 or r.stdout.count('\n') == 3) and ps =="OK\n" :
+if (r.stdout.count('\n') == 2 or r.stdout.count('\n') == 3) and ps == "OK\n" :
 	print("\033[32m" + "\tOK" + "\033[0m", end="")
 elif ps == "KO\n" :
 	print("\033[31m" + f"\tKO : not_sorted" + "\033[0m", end="")
