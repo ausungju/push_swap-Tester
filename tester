@@ -50,11 +50,14 @@ print("/*                                                         +:+ +:+       
 print("/*   By: seongkim                                        +#+  +:+       +#+        */")
 print("/*                                                     +#+#+#+#+#+   +#+           */")
 print("/*   Created: 2024/06/28 by seongkim                        #+#    #+#             */")
-print("/*   Updated: 2024/07/01 by seongkim                       ###   ########.fr       */")
+print("/*   Updated: 2024/06/29 by seongkim                       ###   ########.fr       */")
 print("/*                                                                                 */")
 print("/* ******************************************************************************* */")
-print("\n")
+print("")
 
+out = sp.run(args=["norminette"], capture_output=True, text=True).stdout
+if ": Error!" in out :
+	print("\033[31m" + "norminette ERROR!\n" + "\033[0m")
 out = sp.run(args=["make", "re"], capture_output=True, text=True)
 if (out.stderr != "") :
 	print(out.stderr)
@@ -82,7 +85,7 @@ print(check_leck("a 1"))
 
 r = sp.run(args=["./push_swap", "a", "1"], capture_output=True, text=True)
 check_leck("a 1")
-print("\t\t\t", end="")
+print("\t\t\t\t\t", end="")
 if r.stderr == "Error\n" or r.stdout == "Error\n":
 	print("\033[32m" + "\tOK" + "\033[0m", end="")
 else :
@@ -96,9 +99,25 @@ if r.stderr == "Error\n" or r.stdout == "Error\n":
 else :
 	print("\033[31m" + "\tKO" + "\033[0m", end="")
 print(check_leck("a 1"))
-	
+
+r = sp.run(args=["./push_swap", "0", "0"], capture_output=True, text=True)
+print("\t\t\t\t\t", end="")
+if r.stderr == "Error\n" or r.stdout == "Error\n":
+	print("\033[32m" + "\tOK" + "\033[0m", end="")
+else :
+	print("\033[31m" + "\tKO" + "\033[0m", end="")
+print(check_leck("a 1"))
+
 r = sp.run(args=["./push_swap", "-2147483649 2147483648"], capture_output=True, text=True)
 print("\t./push_swap <int range exceeded>", end="")
+if r.stderr == "Error\n" or r.stdout == "Error\n":
+	print("\033[32m" + "\tOK" + "\033[0m", end="")
+else :
+	print("\033[31m" + "\tKO" + "\033[0m", end="")
+print(check_leck("a 1"))
+
+r = sp.run(args=["./push_swap", "-2147483649", "2147483648"], capture_output=True, text=True)
+print("\t\t\t\t\t", end="")
 if r.stderr == "Error\n" or r.stdout == "Error\n":
 	print("\033[32m" + "\tOK" + "\033[0m", end="")
 else :
@@ -132,8 +151,26 @@ else :
 	print("\033[31m" + f"\tKO : {put}" + "\033[0m", end="")
 print(check_leck("a 1"))
 
+r = sp.run(args=["./push_swap", "0", "1", "2", "3"], capture_output=True, text=True)
+print("\t\t\t\t\t", end="")
+if r.stdout == "" :
+	print("\033[32m" + "\tOK" + "\033[0m", end="")
+else :
+	put = r.stdout.count('\n')
+	print("\033[31m" + f"\tKO : {put}" + "\033[0m", end="")
+print(check_leck("a 1"))
+
 r = sp.run(args=["./push_swap", "0 1 2 3 4 5 6 7 8 9"], capture_output=True, text=True)
 print("\t./push_swap \"0 1 2 3 4 5 6 7 8 9\"", end="")
+if r.stdout == "" :
+	print("\033[32m" + "\tOK" + "\033[0m", end="")
+else :
+	put = r.stdout.count('\n')
+	print("\033[31m" + f"\tKO : {put}" + "\033[0m", end="")
+print(check_leck("a 1"))
+
+r = sp.run(args=["./push_swap", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"], capture_output=True, text=True)
+print("\t\t\t\t\t", end="")
 if r.stdout == "" :
 	print("\033[32m" + "\tOK" + "\033[0m", end="")
 else :
@@ -153,9 +190,33 @@ else :
 	print("\033[31m" + f"\tKO : {put}" + "\033[0m", end="")
 print(check_leck("a 1"))
 
+r = sp.run(args=["./push_swap", "2", "1", "0"], capture_output=True, text=True)
+ps = sp.Popen("./push_swap 2 1 0 | ./checker_linux 2 1 0",shell=True,stdout=sp.PIPE,stderr=sp.STDOUT).communicate()[0].decode("utf-8")
+print("\t\t\t\t\t", end="")
+if (r.stdout.count('\n') == 2 or r.stdout.count('\n') == 3) and ps == "OK\n" :
+	print("\033[32m" + "\tOK" + "\033[0m", end="")
+elif ps == "KO\n" :
+	print("\033[31m" + f"\tKO : not_sorted" + "\033[0m", end="")
+else :
+	put = r.stdout.count('\n')
+	print("\033[31m" + f"\tKO : {put}" + "\033[0m", end="")
+print(check_leck("a 1"))
+
 r = sp.run(args=["./push_swap", "1 5 2 4 3"], capture_output=True, text=True)
 ps = sp.Popen("./push_swap \"1 5 2 4 3\" | ./checker_linux \"1 5 2 4 3\"",shell=True,stdout=sp.PIPE,stderr=sp.STDOUT).communicate()[0].decode("utf-8")
 print("\t./push_swap \"1 5 2 4 3\"", end="\t\t")
+if r.stdout.count('\n') < 12 and ps == "OK\n":
+	print("\033[32m" + "\tOK" + "\033[0m", end="")
+elif ps == "KO\n" :
+	print("\033[31m" + f"\tKO : not_sorted" + "\033[0m", end="")
+else :
+	put = r.stdout.count('\n')
+	print("\033[31m" + f"\tKO : {put}" + "\033[0m", end="")
+print(check_leck("a 1"))
+
+r = sp.run(args=["./push_swap", "1", "5", "2", "4", "3"], capture_output=True, text=True)
+ps = sp.Popen("./push_swap 1 5 2 4 3 | ./checker_linux 1 5 2 4 3",shell=True,stdout=sp.PIPE,stderr=sp.STDOUT).communicate()[0].decode("utf-8")
+print("\t\t\t\t\t", end="")
 if r.stdout.count('\n') < 12 and ps == "OK\n":
 	print("\033[32m" + "\tOK" + "\033[0m", end="")
 elif ps == "KO\n" :
