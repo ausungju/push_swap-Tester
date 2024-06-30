@@ -63,10 +63,13 @@ else :
 	print("\033[32m" + "\tOK" + "\033[0m", end="\n\n")
 
 out = sp.run(args=["make", "re"], capture_output=True, text=True)
+print("MAKE : ", end="")
 if (out.stderr != "") :
 	print(out.stderr)
-	print("\033[31m" + "\t MAKE FAIL\n" + "\033[0m")
+	print("\033[31m" + "\tFAIL\n" + "\033[0m")
 	exit()
+else :
+	print("\033[32m" + "\tsuccess" + "\033[0m", end="\n\n")
 
 files = os.listdir("./")
 if ("push_swap" not in files or "checker_linux" not in files) :
