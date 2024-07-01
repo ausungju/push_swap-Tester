@@ -88,7 +88,7 @@ print("\033[1m1.Error management\033[0m")
 r = sp.run(args=["./push_swap", "a 1"], capture_output=True, text=True)
 check_leck("a 1")
 print("\t./push_swap <Non-numeric arguments>", end="")
-if "ERROR" == r.stderr.upper()  or "ERROR" == r.stdout.upper():
+if "ERROR" in r.stderr.upper()  or "ERROR" in r.stdout.upper():
 	print("\033[32m" + "\tOK" + "\033[0m", end="")
 else :
 	print("\033[31m" + "\tKO" + "\033[0m", end="")
@@ -97,7 +97,8 @@ print(check_leck("a 1"))
 r = sp.run(args=["./push_swap", "a", "1"], capture_output=True, text=True)
 check_leck("a 1")
 print("\t\t\t\t\t", end="")
-if "ERROR" == r.stderr.upper()  or "ERROR" == r.stdout.upper():
+
+if "ERROR" in r.stderr.upper()  or "ERROR" in r.stdout.upper():
 	print("\033[32m" + "\tOK" + "\033[0m", end="")
 else :
 	print("\033[31m" + "\tKO" + "\033[0m", end="")
@@ -105,7 +106,7 @@ print(check_leck("a 1"))
 
 r = sp.run(args=["./push_swap", "0 0"], capture_output=True, text=True)
 print("\t./push_swap <Duplicate numbers>", end="\t")
-if "ERROR" == r.stderr.upper()  or "ERROR" == r.stdout.upper():
+if "ERROR" in r.stderr.upper()  or "ERROR" in r.stdout.upper():
 	print("\033[32m" + "\tOK" + "\033[0m", end="")
 else :
 	print("\033[31m" + "\tKO" + "\033[0m", end="")
@@ -113,7 +114,7 @@ print(check_leck("a 1"))
 
 r = sp.run(args=["./push_swap", "0", "0"], capture_output=True, text=True)
 print("\t\t\t\t\t", end="")
-if "ERROR" == r.stderr.upper()  or "ERROR" == r.stdout.upper():
+if "ERROR" in r.stderr.upper()  or "ERROR" in r.stdout.upper():
 	print("\033[32m" + "\tOK" + "\033[0m", end="")
 else :
 	print("\033[31m" + "\tKO" + "\033[0m", end="")
@@ -121,7 +122,7 @@ print(check_leck("a 1"))
 
 r = sp.run(args=["./push_swap", "-2147483649 2147483648"], capture_output=True, text=True)
 print("\t./push_swap <int range exceeded>", end="")
-if "ERROR" == r.stderr.upper()  or "ERROR" == r.stdout.upper():
+if "ERROR" in r.stderr.upper()  or "ERROR" in r.stdout.upper():
 	print("\033[32m" + "\tOK" + "\033[0m", end="")
 else :
 	print("\033[31m" + "\tKO" + "\033[0m", end="")
@@ -129,7 +130,7 @@ print(check_leck("a 1"))
 
 r = sp.run(args=["./push_swap", "-2147483649", "2147483648"], capture_output=True, text=True)
 print("\t\t\t\t\t", end="")
-if "ERROR" == r.stderr.upper()  or "ERROR" == r.stdout.upper():
+if "ERROR" in r.stderr.upper()  or "ERROR" in r.stdout.upper():
 	print("\033[32m" + "\tOK" + "\033[0m", end="")
 else :
 	print("\033[31m" + "\tKO" + "\033[0m", end="")
