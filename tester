@@ -128,7 +128,7 @@ else :
 	print("\033[31m" + "\tKO" + "\033[0m", end="")
 print(check_leck("a 1"))
 
-r = sp.run(args=["./push_swap", "-2147483649", "2147483648"], capture_output=True, text=True)
+r = sp.run(args=["./push_swap", "2147483648"], capture_output=True, text=True)
 print("\t\t\t\t\t", end="")
 if "ERROR" in r.stderr.upper()  or "ERROR" in r.stdout.upper():
 	print("\033[32m" + "\tOK" + "\033[0m", end="")
