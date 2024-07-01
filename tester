@@ -5,6 +5,7 @@ import numpy as np
 import os
 
 def check_num_range(big_num, samll_num, limit_cmd) :
+	new_line = '\n'
 	num_list = []
 	num_set = np.array(range(big_num, samll_num - 1, -1))
 	num_list.append(' '.join(map(str, num_set)))
@@ -14,19 +15,22 @@ def check_num_range(big_num, samll_num, limit_cmd) :
 	print("\t./push_swap <5 random values>")
 	print('\t\t', end="")
 	for i in range(len(num_list)) :
-		r = sp.run(args=["./push_swap", num_list[i]], capture_output=True, text=True).stdout.count('\n')
+		r = sp.run(args=["./push_swap", num_list[i]], capture_output=True, text=True)
 		ps = sp.Popen("./push_swap 2 1 0 | ./checker_linux 2 1 0",shell=True,stdout=sp.PIPE,stderr=sp.STDOUT).communicate()[0].decode("utf-8")
 		if i % 4 == 0 and i != 0:
 			print("\n\t\t", end="")
-		if r < limit_cmd and ps == "OK\n":
+		if r.returncode != 0 :
+			print(f"{i+1}." + "\033[31m" + f"KO: error" + "\033[0m", end="  ")
+		elif r.stdout.count(new_line) < limit_cmd and ps == "OK\n":
 			print(f"{i+1}." + "\033[32m" + "OK" + "\033[0m", end="  ")
 		elif ps == "KO\n" :
 			print(f"{i+1}." + "\033[31m" + f"KO:not sorted" + "\033[0m", end="  ")
 		else :
-			print(f"{i+1}." + "\033[31m" + f"KO: {r}" + "\033[0m", end="  ")
+			print(f"{i+1}." + "\033[31m" + f"KO: {r.stdout.count(new_line)}" + "\033[0m", end="  ")
 		if (i + 1 == len(num_list)) :
 			print("" + check_leck(' '.join(map(str, num_set))))
 	print("\n")
+
 
 
 def check_leck(num_list) :
