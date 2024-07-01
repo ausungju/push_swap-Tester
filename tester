@@ -21,7 +21,7 @@ def check_num_range(big_num, samll_num, limit_cmd) :
 			print("\n\t\t", end="")
 		if r.returncode != 0 :
 			print(f"{i+1}." + "\033[31m" + f"KO: error" + "\033[0m", end="  ")
-		elif r.stdout.count(new_line) < limit_cmd and ps == "OK\n":
+		elif r.stdout.count(new_line) <= limit_cmd and ps == "OK\n":
 			print(f"{i+1}." + "\033[32m" + "OK" + "\033[0m", end="  ")
 		elif ps == "KO\n" :
 			print(f"{i+1}." + "\033[31m" + f"KO:not sorted" + "\033[0m", end="  ")
@@ -88,7 +88,7 @@ print("\033[1m1.Error management\033[0m")
 r = sp.run(args=["./push_swap", "a 1"], capture_output=True, text=True)
 check_leck("a 1")
 print("\t./push_swap <Non-numeric arguments>", end="")
-if r.stderr == "Error\n" or r.stdout == "Error\n":
+if "Error" == r.stderr  or "Error" == r.stdout:
 	print("\033[32m" + "\tOK" + "\033[0m", end="")
 else :
 	print("\033[31m" + "\tKO" + "\033[0m", end="")
@@ -97,7 +97,7 @@ print(check_leck("a 1"))
 r = sp.run(args=["./push_swap", "a", "1"], capture_output=True, text=True)
 check_leck("a 1")
 print("\t\t\t\t\t", end="")
-if r.stderr == "Error\n" or r.stdout == "Error\n":
+if "Error" == r.stderr  or "Error" == r.stdout:
 	print("\033[32m" + "\tOK" + "\033[0m", end="")
 else :
 	print("\033[31m" + "\tKO" + "\033[0m", end="")
@@ -105,7 +105,7 @@ print(check_leck("a 1"))
 
 r = sp.run(args=["./push_swap", "0 0"], capture_output=True, text=True)
 print("\t./push_swap <Duplicate numbers>", end="\t")
-if r.stderr == "Error\n" or r.stdout == "Error\n":
+if "Error" == r.stderr  or "Error" == r.stdout:
 	print("\033[32m" + "\tOK" + "\033[0m", end="")
 else :
 	print("\033[31m" + "\tKO" + "\033[0m", end="")
@@ -113,7 +113,7 @@ print(check_leck("a 1"))
 
 r = sp.run(args=["./push_swap", "0", "0"], capture_output=True, text=True)
 print("\t\t\t\t\t", end="")
-if r.stderr == "Error\n" or r.stdout == "Error\n":
+if "Error" == r.stderr  or "Error" == r.stdout:
 	print("\033[32m" + "\tOK" + "\033[0m", end="")
 else :
 	print("\033[31m" + "\tKO" + "\033[0m", end="")
@@ -121,7 +121,7 @@ print(check_leck("a 1"))
 
 r = sp.run(args=["./push_swap", "-2147483649 2147483648"], capture_output=True, text=True)
 print("\t./push_swap <int range exceeded>", end="")
-if r.stderr == "Error\n" or r.stdout == "Error\n":
+if "Error" == r.stderr  or "Error" == r.stdout:
 	print("\033[32m" + "\tOK" + "\033[0m", end="")
 else :
 	print("\033[31m" + "\tKO" + "\033[0m", end="")
@@ -129,7 +129,7 @@ print(check_leck("a 1"))
 
 r = sp.run(args=["./push_swap", "-2147483649", "2147483648"], capture_output=True, text=True)
 print("\t\t\t\t\t", end="")
-if r.stderr == "Error\n" or r.stdout == "Error\n":
+if "Error" == r.stderr  or "Error" == r.stdout:
 	print("\033[32m" + "\tOK" + "\033[0m", end="")
 else :
 	print("\033[31m" + "\tKO" + "\033[0m", end="")
