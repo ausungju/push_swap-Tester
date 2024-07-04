@@ -4,7 +4,7 @@ import subprocess as sp
 import numpy as np
 import os
 
-def check_num_range(big_num, samll_num, limit_cmd) :
+def check_num_range(num_of_num, big_num, samll_num, limit_cmd) :
 	new_line = '\n'
 	num_list = []
 	num_set = np.array(range(big_num, samll_num - 1, -1))
@@ -12,11 +12,11 @@ def check_num_range(big_num, samll_num, limit_cmd) :
 	for i in range(9) :
 		num_list.append(' '.join(map(str, np.random.permutation(num_set))))
 
-	print("\t./push_swap <5 random values>")
+	print(f"\t./push_swap <{num_of_num} random values>")
 	print('\t\t', end="")
 	for i in range(len(num_list)) :
 		r = sp.run(args=["./push_swap", num_list[i]], capture_output=True, text=True)
-		ps = sp.Popen("./push_swap 2 1 0 | ./checker_linux 2 1 0",shell=True,stdout=sp.PIPE,stderr=sp.STDOUT).communicate()[0].decode("utf-8")
+		ps = sp.Popen(f"./push_swap {num_list[i]} | ./checker_linux {num_list[i]}",shell=True,stdout=sp.PIPE,stderr=sp.STDOUT).communicate()[0].decode("utf-8")
 		if i % 4 == 0 and i != 0:
 			print("\n\t\t", end="")
 		if r.returncode != 0 :
@@ -145,7 +145,7 @@ else :
 	print("\033[31m" + f"\tKO" + "\033[0m", end="")
 print(check_leck("a 1"))
 
-print("\033[1m2.Identity test & Simple version\033[0m")
+print("\n\033[1m2.Identity test & Simple version\033[0m")
 r = sp.run(args=["./push_swap", "42"], capture_output=True, text=True)
 print("\t./push_swap 42", end="\t\t\t")
 if r.stdout == "" :
@@ -239,10 +239,10 @@ else :
 	print("\033[31m" + f"\tKO : {put}" + "\033[0m", end="")
 print(check_leck("a 1"))
 
-check_num_range(5, 1, 12)
+check_num_range(5, 5, 1, 12)
 
 print("\033[1m3.Middle version\033[0m")
-check_num_range(100, 1, 700)
+check_num_range(100, 100, 1, 700)
 
 print("\033[1m4.Advanced version\033[0m")
-check_num_range(500, 1, 5500)
+check_num_range(500, 500, 1, 5500)
