@@ -74,6 +74,7 @@ if (out.stderr != "") :
 	exit()
 else :
 	print("\033[32m" + "\tsuccess" + "\033[0m", end="\n\n")
+out = sp.run(args=["make", "clean"], capture_output=True, text=True)
 
 files = os.listdir("./")
 if ("push_swap" not in files or "checker_linux" not in files) :
