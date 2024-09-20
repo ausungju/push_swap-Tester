@@ -63,12 +63,12 @@ print("/*                                                                       
 print("/* ******************************************************************************* */")
 print("")
 
-# out = sp.run(args=["norminette"], capture_output=True, text=True).stdout
-# print("norminette :", end=" ")
-# if ": Error!" in out :
-# 	print("\033[31m" + "\tKO" + "\033[0m", end="\n\n")
-# else :
-# 	print("\033[32m" + "\tOK" + "\033[0m", end="\n\n")
+out = sp.run(args=["norminette"], capture_output=True, text=True).stdout
+print("norminette :", end=" ")
+if ": Error!" in out :
+	print("\033[31m" + "\tKO" + "\033[0m", end="\n\n")
+else :
+	print("\033[32m" + "\tOK" + "\033[0m", end="\n\n")
 
 out = sp.run(args=["make", "re"], capture_output=True, text=True)
 print("MAKE : ", end="")
