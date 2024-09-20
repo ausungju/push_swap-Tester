@@ -32,7 +32,7 @@ def check_num_range(num_of_num, big_num, samll_num, limit_cmd) :
 	print("\n")
 
 def print_out(s) :
-    file = open("out", 'w')
+    file = open("leak_log", 'w')
     file.write(s)
     
     
